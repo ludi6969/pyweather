@@ -1,6 +1,8 @@
+from interpreter import add_measure
 import utils
 import sys
 import json
+from database import Db
 
 def init(db_path):
      if (not utils.is_database_exists(db_path)):
@@ -9,7 +11,9 @@ def init(db_path):
          if (a == 'no'):
              sys.exit(1)
          else:
-             print('Your database was created succesfuly!')
+            db = Db(db_path)
+            db.init()
+            db.close()
          
 
 def jsonify(data):
