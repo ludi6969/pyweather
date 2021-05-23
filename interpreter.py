@@ -24,7 +24,7 @@ def show_measures(x):
 def statistics():
     print('statistics')
 
-def run():
+def run(db):
     c = input('command:')
     if c == 'q':
         quit()
