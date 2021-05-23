@@ -3,7 +3,7 @@ from os import path
 import datetime
 
 def get_main_module_path():
-    return path.abspath(sys.modules['__main__'].__file__)
+    return path.dirname(sys.modules['__main__'].__file__)
 
 def is_database_exists(db_path):
     path.isfile(db_path)
