@@ -11,4 +11,6 @@ if __name__ == '__main__':
     common.init(database_path)
     db = Db(database_path)
     while True: 
+        print()
         run(db)
+        print()

@@ -22,14 +22,13 @@ def add_measure(db):
 
 
 def show_all_measures(db):
-    print()
     print('date                            temperature      downfall')
     print()
     records = db.get_all()
     for i in records:
         # print('date                            temperature      downfall')
         print('%s         %s               %s' % (i[1], i[2], i[3]))
-    print()
+
 
 def export_json(db):
     u = input('enter file path: ')
@@ -44,18 +43,18 @@ def stats(db):
     min = statistics.min(records)
     max = statistics.max(records)
     avg = statistics.average(records)
-    print()
     print('                temperature         downfall')
     print()
     print('minimum         % 2.2f              % 3.2f' % (min[0], min[1]))
     print('maximum         % 2.2f              % 3.2f' % (max[0], max[1]))
     print('average         % 2.2f              % 3.2f' % (avg[0], avg[1]))
-    print()
+
      
 
 
 def run(db):
-    c = input('command:')
+    c = input('command: ')
+    print()
     if c == 'q':
         quit(db)
 
