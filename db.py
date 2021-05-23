@@ -1,15 +1,28 @@
 import sqlite3
+import utils
 
 class Db:
     def __init__(self, path):
-        self.__db = sqlite3.connect(path)
+        self.__db = sqlite3.connect(path, isolation_level=None)
+        self.__dbcur = self.__db.cursor()
 
     def init(self):
-        self.__db.execute('''CREATE TABLE measures (
+        self.__dbcur.execute('''CREATE TABLE measures (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            temperature REAL,
-            downfall REAL
-        )''')
+            date STRING,
+            temperature STRING,
+            downfall STRING
+        );''')
 
-a = Db('./db.db')
-a.init()
+    def insert(self, temp, downfall):
+        self.__dbcur.execute('''INSERT INTO measures (date, temperature, downfall) VALUES (
+            '%s', '%s', '%s' );''' % (utils.get_current_datetime(), temp, downfall))
+
+    def getAll(self):
+        return self.__dbcur.execute('''SELECT * FROM measures ORDER BY id DESC''').fetchall()
+
+    def get(self, limit):
+        return self.__dbcur.execute('''SELECT * FROM measures ORDER BY id DESC LIMIT %d''' % limit).fetchall()
+    
+    def count(self):
+        return self.__dbcur.execute('''SELECT COUNT(id) FROM measures''').fetchone()[0]
