@@ -18,7 +18,7 @@ class Db:
         self.__dbcur.execute('''INSERT INTO measures (date, temperature, downfall) VALUES (
             '%s', '%s', '%s' );''' % (utils.get_current_datetime(), temp, downfall))
 
-    def getAll(self):
+    def get_all(self):
         return self.__dbcur.execute('''SELECT * FROM measures ORDER BY id DESC''').fetchall()
 
     def get(self, limit):
