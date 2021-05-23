@@ -1,22 +1,18 @@
 def __min_temp(data):
     ct = float(data[0][2])
-    r = data[0]
     for i in data:
         tmp = float(i[2])
         if tmp < ct:
             ct = tmp
-            r = i
-    return r
+    return ct
 
 def __min_df(data):
     cdf = float(data[0][3])
-    r = data[0]
     for i in data:
         tmp = float(i[3])
         if tmp < cdf:
             cdf = tmp
-            r = i
-    return r
+    return cdf
 
 
 def min(data):
@@ -26,23 +22,19 @@ def min(data):
 
 def __max_temp(data):
     ct = float(data[0][2])
-    r = data[0]
     for i in data:
         tmp = float(i[2])
         if tmp > ct:
             ct = tmp
-            r = i
-    return r
+    return ct
 
 def __max_df(data):
     cdf = float(data[0][3])
-    r = data[0]
     for i in data:
         tmp = float(i[3])
         if tmp > cdf:
             cdf = tmp
-            r = i
-    return r
+    return cdf
 
 
 def max(data):
@@ -67,14 +59,3 @@ def average(data):
     avg_df = __average_df(data)
     return (avg_temp, avg_df)
 
-from database import Db
-
-db = Db('./db.db')
-db.insert('10.1', '50')
-db.insert('100.1', '0')
-
-data = db.get_all()
-# print(data)
-print(min(data))
-print(max(data))
-print(average(data))

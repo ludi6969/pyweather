@@ -1,0 +1,1 @@
+[{"date": 4, "temperature": "2021-05-23 16:17:12 UTC", "downfall": 11}, {"date": 3, "temperature": "2021-05-23 16:15:20 UTC", "downfall": 24}, {"date": 2, "temperature": "2021-05-23 16:15:07 UTC", "downfall": 40}, {"date": 1, "temperature": "2021-05-23 16:14:42 UTC", "downfall": 21}]

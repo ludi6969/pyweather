@@ -1,4 +1,6 @@
 import sys
+import statistics
+import common
 
 def quit(db):
     db.close
@@ -9,8 +11,8 @@ def help():
 h - help ( show all available commands )
 a - add measure
 m - show all measures
-m [x] - show last [x] measures
-s - statistics''')
+s - statistics
+e - export data to json''')
 
 def add_measure(db):
     temp = input('type in the temperature: ')
@@ -29,11 +31,28 @@ def show_all_measures(db):
         print('%s         %s               %s' % (i[1], i[2], i[3]))
     print()
 
-def show_measures(x):
-    print('show x measures')
+def export_json(db):
+    u = input('enter file path: ')
+    sdata = common.jsonify(db.get_all())
+    file = open(u, "w")
+    file.write(sdata)
+    file.close()
+    print('data exported succesfully')
 
-def statistics(db):
-    print('statistics')
+def stats(db):
+    records = db.get_all()
+    min = statistics.min(records)
+    max = statistics.max(records)
+    avg = statistics.average(records)
+    print()
+    print('                temperature         downfall')
+    print()
+    print('minimum         % 2.2f              % 3.2f' % (min[0], min[1]))
+    print('maximum         % 2.2f              % 3.2f' % (max[0], max[1]))
+    print('average         % 2.2f              % 3.2f' % (avg[0], avg[1]))
+    print()
+     
+
 
 def run(db):
     c = input('command:')
@@ -48,6 +67,12 @@ def run(db):
 
     elif c == 'm':
         show_all_measures(db)
+
+    elif c == 'e':
+        export_json(db)
+    
+    elif c == 's':
+        stats(db)
 
     else:
         print('Please type "h" to see all the avaliable commands :)')

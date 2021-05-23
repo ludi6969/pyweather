@@ -20,9 +20,10 @@ def jsonify(data):
     l = []
     for i in data:
         tmp = {
-            'date': i[0],
-            'temperature': i[1],
-            'downfall': i[2]
+            'id': i[0],
+            'date': i[1],
+            'temperature': i[2],
+            'downfall': i[3]
         }
         l.append(tmp)
     return json.dumps(l)
