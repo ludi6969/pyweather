@@ -10,4 +10,4 @@ def is_database_exists(db_path):
 
 def get_current_datetime():
     t = datetime.datetime.utcnow()
-    return '%s-%s-%s %s:%s:%s UTC' % (t.year, t.month, t.day, t.hour, t.minute, t.second)
+    return '%04d-%02d-%02d %02d:%02d:%02d UTC' % (t.year, t.month, t.day, t.hour, t.minute, t.second)
