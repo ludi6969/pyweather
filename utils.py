@@ -11,5 +11,3 @@ def is_database_exists(db_path):
 def get_current_datetime():
     t = datetime.datetime.utcnow()
     return '%s-%s-%s %s:%s:%s UTC' % (t.year, t.month, t.day, t.hour, t.minute, t.second)
-
-print(is_database_exists('./db.db'))

@@ -50,11 +50,31 @@ def max(data):
     max_df = __max_df(data)
     return (max_temp, max_df)
 
+def __average_temp(data):
+    a = 0
+    for i in data:
+        a += float(i[2])
+    return a/len(data)
+
+def __average_df(data):
+    a = 0
+    for i in data:
+        a += float(i[3])
+    return a/len(data)
+
+def average(data):
+    avg_temp = __average_temp(data)
+    avg_df = __average_df(data)
+    return (avg_temp, avg_df)
+
 from database import Db
 
 db = Db('./db.db')
 db.insert('10.1', '50')
 db.insert('100.1', '0')
+
 data = db.get_all()
-print(data)
+# print(data)
+print(min(data))
 print(max(data))
+print(average(data))
