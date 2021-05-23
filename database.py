@@ -26,3 +26,6 @@ class Db:
     
     def count(self):
         return self.__dbcur.execute('''SELECT COUNT(id) FROM measures''').fetchone()[0]
+
+    def close(self):
+        return self.__db.close()
