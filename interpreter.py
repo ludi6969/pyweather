@@ -1,7 +1,8 @@
 import sys
 
-def quit():
-    sys.quit(0)
+def quit(db):
+    db.close
+    sys.exit(0)
 
 def help():
     print('''q - quit
@@ -12,7 +13,6 @@ m [x] - show last [x] measures
 s - statistics''')
 
 def add_measure(db):
-    print('add measure')
     temp = input('type in the temperature: ')
     down = input('type in the downfall: ')
     db.insert(temp, down)
@@ -20,8 +20,14 @@ def add_measure(db):
 
 
 def show_all_measures(db):
-    print('show all measures')
-
+    print()
+    print('date                            temperature      downfall')
+    print()
+    records = db.get_all()
+    for i in records:
+        # print('date                            temperature      downfall')
+        print('%s         %s               %s' % (i[1], i[2], i[3]))
+    print()
 
 def show_measures(x):
     print('show x measures')
@@ -35,7 +41,7 @@ def run(db):
         quit(db)
 
     elif c == 'h':
-        help(db)
+        help()
 
     elif c == 'a':
         add_measure(db)
